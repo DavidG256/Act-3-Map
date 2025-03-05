@@ -25,11 +25,15 @@ public class Ubicacion {
         return exits;
     }
 
-
     public void addExit (String direccion, int idUbicacion){
         exits.put(direccion, idUbicacion);
     }
 
+    public void Salidas(){
+        for (Map.Entry<String, Integer> entradaMapa: exits.entrySet()) {
+            System.out.print(entradaMapa.getKey()+" ");
+        }
+    }
 
 
     @Override
