@@ -1,17 +1,18 @@
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
 
-    private static Map<Integer, Ubicacion> ubicaciones;
+    private static Map<Integer, Ubicacion> ubicaciones = new HashMap<>();
 
     public static void main(String[] args) {
         Ubicacion ubicacion0 = new Ubicacion(0, "Estás sentado en la clase de programación");
-        Ubicacion ubicacion1 = new Ubicacion(1,"Estás en la cima de una montaña");
-        Ubicacion ubicacion2 = new Ubicacion(2,"Estás bañándote en la playa");
-        Ubicacion ubicacion3 = new Ubicacion(3,"Estás dentro de un edificio muy alto");
-        Ubicacion ubicacion4 = new Ubicacion(4,"Estás de pie en un puente");
-        Ubicacion ubicacion5 = new Ubicacion(5,"Estás en un bosque");
+        Ubicacion ubicacion1 = new Ubicacion(1, "Estás en la cima de una montaña");
+        Ubicacion ubicacion2 = new Ubicacion(2, "Estás bañándote en la playa");
+        Ubicacion ubicacion3 = new Ubicacion(3, "Estás dentro de un edificio muy alto");
+        Ubicacion ubicacion4 = new Ubicacion(4, "Estás de pie en un puente");
+        Ubicacion ubicacion5 = new Ubicacion(5, "Estás en un bosque");
 
         ubicaciones.put(0, ubicacion0);
         ubicaciones.put(1, ubicacion1);
@@ -19,7 +20,6 @@ public class Main {
         ubicaciones.put(3, ubicacion3);
         ubicaciones.put(4, ubicacion4);
         ubicaciones.put(5, ubicacion5);
-
 
 
         ubicacion1.addExit("S", 1);
@@ -56,33 +56,44 @@ public class Main {
         ubicacion5.addExit("N", 5);
         ubicacion5.addExit("Q", 0);
 
+
+
+        Scanner scanner = new Scanner(System.in);
+        String respuesta;
+        int cont = 1;
+
+
+            do {
+                System.out.println(ubicaciones.get(cont).getDescripcion());
+                System.out.print("Tus salidas válidas son: ");
+                ubicaciones.get(cont).Salidas();
+                respuesta = scanner.next();
+                scanner.nextLine();
+                System.out.println();
+
+                if (respuesta.equals("Q")) {
+                    System.out.println("Estás sentado en la clase de programación");
+                    System.out.println("Saliendo");
+                    respuesta = "Q";
+                } else {
+                    if (ubicaciones.get(cont).getExits().get(respuesta) != null) {
+                        cont = ubicaciones.get(cont).getExits().get(respuesta);
+                        ;
+                        System.out.println(ubicaciones.get(cont).getDescripcion());
+                        System.out.println("Puedes elegir:");
+
+
+                    } else {
+                        System.out.println("No puedes ");
+                    }
+
+
+                }
+
+
+            } while (!respuesta.equals("Q")) ;
+
+
     }
 
-
-    Scanner scanner = new Scanner(System.in);
-    String respuesta;
-    int cont=1;
-
-
-    public void mostrarUbicaciones() {
-        for (Map.Entry<Integer, Ubicacion>entry : ubicaciones.entrySet()) {
-            System.out.println("ID: " + entry.getKey() + " Descripción:s " + entry.getValue().getDescripcion());
-            System.out.println("Salidas: " + entry.getValue().getExits());
-            System.out.println();
-        }
-    }
-
-
-    do {
-        System.out.println(ubicaciones.get(cont).getDescripcion());
-        System.out.print("Tus salidas válidas son: ");
-        ubicaciones.get(cont).Salidas();
-        respuesta=scanner.next();
-        scanner.nextLine();
-        System.out.println();
-
-
-
-
-    }while (!respuesta.equals)
 }

@@ -35,15 +35,4 @@ public class Ubicacion {
         }
     }
 
-
-    @Override
-    public String toString() {
-        return "Ubicacion{" +
-                "id=" + id +
-                ", descripcion='" + descripcion + '\'' +
-                ", exits=" + exits +
-                '}';
-    }
-
-
 }
